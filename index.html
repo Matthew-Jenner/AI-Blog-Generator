@@ -12,6 +12,23 @@
 		<link
 			href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
 			rel="stylesheet" />
+            <style>
+                /* Custom styles */
+        .load {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+            </style>
+
 	</head>
 	<body class="flex flex-col min-h-scrren bg-gray-100 fint-sans antialised">
 		<!-- NavBar -->
@@ -61,6 +78,10 @@
 						</button>
 					</div>
 				</div>
+				<!-- loading section -->
+				<div
+					id="loading-circle"
+					class="load"></div>
 				<!-- Generated Blog Dsiplay -->
 				<section class="mt-10 flex-grow">
 					<h2 class="text-xl mb-4 font-semibold">Generated Blog Article</h2>
@@ -68,16 +89,40 @@
 						id="blog-content"
 						class="mt-2 text-gray-700 space-y-4">
 						Matthew is the best
-                        <!-- loading section -->
 					</div>
 				</section>
 			</div>
 		</div>
-        <footer class="text-center p4 text-black mt-6 mb-4">
-            Powered by Matthew Jenner Tech Services 
-        </footer>
-        <script>
+		<footer class="text-center p4 text-black mt-6 mb-4">
+			Powered by Matthew Jenner Tech Services
+		</footer>
+		<script>
+             // Get references to elements
+        const generateButton = document.getElementById('generateBlogButton');
+        const loadingCircle = document.getElementById('loading-circle');
+
+        // Add click event listener to the generate button
+        generateButton.addEventListener('click', () => {
+            // Hide the generate button and input container
+            generateButton.style.display = 'none';
+            document.querySelector('.mb-8').style.display = 'none';
             
+            // Show the loading spinner
+            loadingCircle.classList.remove('hidden');
+
+            // Simulate a delay (you would replace this with your actual data fetching process)
+            setTimeout(() => {
+                // After the delay, hide the loading spinner
+                loadingCircle.classList.add('hidden');
+                
+                // Display the generated content (this is just an example)
+                const blogContent = document.getElementById('blog-content');
+                blogContent.innerHTML = 'Generated blog content goes here';
+                
+                // Make the generated content section visible
+                blogContent.style.display = 'block';
+            }, 2000); // Simulated delay of 2 seconds
+        });
         </script>
 	</body>
 </html>
