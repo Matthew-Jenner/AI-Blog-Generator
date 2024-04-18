@@ -12,23 +12,46 @@
 		<link
 			href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
 			rel="stylesheet" />
-            <style>
-                /* Custom styles */
-        .load {
-            border: 4px solid #f3f3f3; /* Light grey */
-            border-top: 4px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-        }
+		<style>
+			@keyframes rotate {
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-            </style>
+			@-webkit-keyframes rotate {
+				from {
+					-webkit-transform: rotate(0deg);
+				}
+				to {
+					-webkit-transform: rotate(360deg);
+				}
+			}
 
+			.load {
+				width: 100px;
+				height: 100px;
+				margin: 110px auto 0;
+				border: solid 10px #8822aa;
+				border-radius: 50%;
+				border-right-color: transparent;
+				border-bottom-color: transparent;
+				-webkit-transition: all 0.5s ease-in;
+				-webkit-animation-name: rotate;
+				-webkit-animation-duration: 1s;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-timing-function: linear;
+
+				transition: all 0.5s ease-in;
+				animation-name: rotate;
+				animation-duration: 1s;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+		</style>
 	</head>
 	<body class="flex flex-col min-h-scrren bg-gray-100 fint-sans antialised">
 		<!-- NavBar -->
@@ -80,6 +103,7 @@
 				</div>
 				<!-- loading section -->
 				<div
+					style="display: none"
 					id="loading-circle"
 					class="load"></div>
 				<!-- Generated Blog Dsiplay -->
@@ -96,33 +120,6 @@
 		<footer class="text-center p4 text-black mt-6 mb-4">
 			Powered by Matthew Jenner Tech Services
 		</footer>
-		<script>
-             // Get references to elements
-        const generateButton = document.getElementById('generateBlogButton');
-        const loadingCircle = document.getElementById('loading-circle');
-
-        // Add click event listener to the generate button
-        generateButton.addEventListener('click', () => {
-            // Hide the generate button and input container
-            generateButton.style.display = 'none';
-            document.querySelector('.mb-8').style.display = 'none';
-            
-            // Show the loading spinner
-            loadingCircle.classList.remove('hidden');
-
-            // Simulate a delay (you would replace this with your actual data fetching process)
-            setTimeout(() => {
-                // After the delay, hide the loading spinner
-                loadingCircle.classList.add('hidden');
-                
-                // Display the generated content (this is just an example)
-                const blogContent = document.getElementById('blog-content');
-                blogContent.innerHTML = 'Generated blog content goes here';
-                
-                // Make the generated content section visible
-                blogContent.style.display = 'block';
-            }, 2000); // Simulated delay of 2 seconds
-        });
-        </script>
+		<script></script>
 	</body>
 </html>
